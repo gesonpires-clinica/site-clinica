@@ -30,7 +30,7 @@ export default function Footer() {
             </div>
           </div>
           <div className="mt-8 text-center border-t border-gray-700 pt-4">
-            <p>&copy; 2024 Clínica Mariane Bach. Todos os direitos reservados.</p>
+            <p>&copy; 2025 Clínica Mariane Bach. Todos os direitos reservados.</p>
           </div>
         </div>
       </footer>
