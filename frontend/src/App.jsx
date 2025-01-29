@@ -1,12 +1,21 @@
+// App.jsx
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import Home from "./pages/Home";
+import Services from "./pages/Services";
+import Contact from "./pages/Contact";
+import Header from "./components/Header";
+import Footer from "./components/Footer";
+
 export default function App() {
   return (
-    <div className="bg-blue-100 min-h-screen p-8">
-      <h1 className="text-4xl font-bold text-blue-800">
-        Clínica Mariane Bach
-      </h1>
-      <p className="mt-4 text-gray-600">
-        Psicopedagogia e Neuropsicopedagogia
-      </p>
-    </div>
+    <Router>
+      <Header />
+      <Routes>
+        <Route path="/" element={<Home />} />
+        <Route path="/services" element={<Services />} />
+        <Route path="/contact" element={<Contact />} />
+      </Routes>
+      <Footer />
+    </Router>
   );
 }
