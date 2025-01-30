@@ -19,6 +19,8 @@ export default function ScheduleForm() {
     return phoneRegex.test(phone);
   };
 
+  const API_URL = import.meta.env.VITE_API_URL; // Obtém a URL do backend do .env
+
   const handleSubmit = async (e) => {
     e.preventDefault();
 
@@ -38,7 +40,7 @@ export default function ScheduleForm() {
       // 📌 Ajustar formato da data para YYYY-MM-DD (para compatibilidade com o MongoDB)
       const formattedDate = new Date(formData.date).toISOString().split("T")[0];
 
-      const response = await fetch("http://localhost:5000/send-email", {
+      const response = await fetch(`${API_URL}/send-email`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ ...formData, date: formattedDate }),
