@@ -25,7 +25,7 @@ const appointmentSchema = new mongoose.Schema({
   phone: { type: String, required: true },
   date: { type: Date, required: true },
   message: { type: String },
-  createdAt: { type: Date, default: Date.now }
+  createdAt: { type: Date, default: Date.now },
 });
 
 const Appointment = mongoose.model("Appointment", appointmentSchema);
@@ -49,8 +49,30 @@ const getNextAppointmentId = async () => {
 app.post("/send-email", async (req, res) => {
   const { name, email, phone, date, message } = req.body;
 
+  // 📌 Validação do telefone
+  const validatePhone = (phone) => {
+    const phoneRegex = /^(\(\d{2}\)\s?|\d{2}\s?)9\d{4}-?\d{4}$/;
+    return phoneRegex.test(phone);
+  };
+
+  if (!validatePhone(phone)) {
+    return res
+      .status(400)
+      .json({
+        message:
+          "Formato de telefone inválido! Use (XX) 9XXXX-XXXX ou XX 9XXXX-XXXX.",
+      });
+  }
+
   try {
     const appointmentId = await getNextAppointmentId();
+
+    // Formatar data para DD/MM/YYYY
+    const formattedDate = new Date(date).toLocaleDateString("pt-BR", {
+      day: "2-digit",
+      month: "2-digit",
+      year: "numeric",
+    });
 
     // Criar e salvar agendamento no banco de dados
     const newAppointment = new Appointment({
@@ -69,10 +91,12 @@ app.post("/send-email", async (req, res) => {
       from: `"Agendamento" <${process.env.EMAIL_USER}>`,
       to: "clinicaneuromarianebach@gmail.com",
       subject: `Agendamento #${appointmentId} - ${name}`,
-      text: `Número do Agendamento: ${appointmentId}\nNome: ${name}\nE-mail: ${email}\nTelefone: ${phone}\nData: ${date}\nMensagem: ${message}`,
+      text: `Número do Agendamento: ${appointmentId}\nNome: ${name}\nE-mail: ${email}\nTelefone: ${phone}\nData: ${formattedDate}\nMensagem: ${message}`,
     });
 
-    res.status(200).json({ message: "Agendamento salvo e e-mail enviado!", appointmentId });
+    res
+      .status(200)
+      .json({ message: "Agendamento salvo e e-mail enviado!", appointmentId });
   } catch (error) {
     console.error("Erro:", error);
     res.status(500).json({ message: "Erro ao processar o agendamento", error });

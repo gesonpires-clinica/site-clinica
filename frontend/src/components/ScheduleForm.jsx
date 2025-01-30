@@ -1,33 +1,54 @@
 // src/components/ScheduleForm.jsx
-import { useState } from 'react';
+import { useState } from "react";
 
 export default function ScheduleForm() {
   const [formData, setFormData] = useState({
-    name: '',
-    email: '',
-    phone: '',
-    date: '',
-    message: '',
+    name: "",
+    email: "",
+    phone: "",
+    date: "",
+    message: "",
   });
 
   const [loading, setLoading] = useState(false);
+  const [error, setError] = useState("");
+
+  // 📌 Validação do telefone (XX) 9XXXX-XXXX ou XX 9XXXX-XXXX
+  const validatePhone = (phone) => {
+    const phoneRegex = /^(\(\d{2}\)\s?|\d{2}\s?)9\d{4}-?\d{4}$/;
+    return phoneRegex.test(phone);
+  };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+
+    setError(""); // Resetar erros antes de validar
+
+    // 📌 Validação do telefone antes do envio
+    if (!validatePhone(formData.phone)) {
+      setError(
+        "Formato de telefone inválido! Use (XX) 9XXXX-XXXX ou XX 9XXXX-XXXX."
+      );
+      return;
+    }
+
     setLoading(true); // Indica que o envio está em andamento
 
     try {
+      // 📌 Ajustar formato da data para YYYY-MM-DD (para compatibilidade com o MongoDB)
+      const formattedDate = new Date(formData.date).toISOString().split("T")[0];
+
       const response = await fetch("http://localhost:5000/send-email", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(formData),
+        body: JSON.stringify({ ...formData, date: formattedDate }),
       });
 
       const result = await response.json();
 
       if (response.ok) {
         alert("Agendamento enviado com sucesso!");
-        setFormData({ name: '', email: '', phone: '', date: '', message: '' });
+        setFormData({ name: "", email: "", phone: "", date: "", message: "" });
       } else {
         alert("Erro ao enviar agendamento: " + result.message);
       }
@@ -40,9 +61,13 @@ export default function ScheduleForm() {
   };
 
   return (
-    <form onSubmit={handleSubmit} className="max-w-md mx-auto bg-white p-6 rounded-lg shadow-md">
+    <form
+      onSubmit={handleSubmit}
+      className="max-w-md mx-auto bg-white p-6 rounded-lg shadow-md"
+    >
       <h2 className="text-2xl font-bold mb-4">Agendar Consulta</h2>
-      
+      {error && <p className="text-red-500 text-sm mb-4">{error}</p>}{" "}
+      {/* Exibir mensagem de erro */}
       <div className="space-y-4">
         <div>
           <label className="block text-gray-700 mb-2">Nome completo</label>
@@ -60,7 +85,9 @@ export default function ScheduleForm() {
           <input
             type="email"
             value={formData.email}
-            onChange={(e) => setFormData({ ...formData, email: e.target.value })}
+            onChange={(e) =>
+              setFormData({ ...formData, email: e.target.value })
+            }
             className="w-full p-2 border rounded focus:ring-2 focus:ring-blue-500"
             required
           />
@@ -71,7 +98,9 @@ export default function ScheduleForm() {
           <input
             type="tel"
             value={formData.phone}
-            onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
+            onChange={(e) =>
+              setFormData({ ...formData, phone: e.target.value })
+            }
             className="w-full p-2 border rounded focus:ring-2 focus:ring-blue-500"
             required
           />
@@ -89,10 +118,14 @@ export default function ScheduleForm() {
         </div>
 
         <div>
-          <label className="block text-gray-700 mb-2">Mensagem (opcional)</label>
+          <label className="block text-gray-700 mb-2">
+            Mensagem (opcional)
+          </label>
           <textarea
             value={formData.message}
-            onChange={(e) => setFormData({ ...formData, message: e.target.value })}
+            onChange={(e) =>
+              setFormData({ ...formData, message: e.target.value })
+            }
             className="w-full p-2 border rounded focus:ring-2 focus:ring-blue-500"
             rows="3"
           ></textarea>
