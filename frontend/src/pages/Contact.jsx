@@ -6,7 +6,7 @@ export default function Contact() {
       <div className="max-w-6xl mx-auto px-4">
         <h1 className="text-4xl font-bold text-center mb-8">Entre em Contato</h1>
 
-        <div className="grid md:grid-cols-2 gap-8">
+        <div id="agendamento" className="grid md:grid-cols-2 gap-8">
           {/* Formulário de Agendamento */}
           <ScheduleForm />
 

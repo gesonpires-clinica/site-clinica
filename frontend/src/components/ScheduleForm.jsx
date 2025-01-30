@@ -10,11 +10,33 @@ export default function ScheduleForm() {
     message: '',
   });
 
+  const [loading, setLoading] = useState(false);
+
   const handleSubmit = async (e) => {
     e.preventDefault();
-    // Aqui você pode adicionar lógica para enviar os dados para um backend ou serviço de e-mail
-    alert('Agendamento enviado! Entraremos em contato para confirmar.');
-    setFormData({ name: '', email: '', phone: '', date: '', message: '' });
+    setLoading(true); // Indica que o envio está em andamento
+
+    try {
+      const response = await fetch("http://localhost:5000/send-email", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(formData),
+      });
+
+      const result = await response.json();
+
+      if (response.ok) {
+        alert("Agendamento enviado com sucesso!");
+        setFormData({ name: '', email: '', phone: '', date: '', message: '' });
+      } else {
+        alert("Erro ao enviar agendamento: " + result.message);
+      }
+    } catch (error) {
+      console.error("Erro ao enviar:", error);
+      alert("Erro na conexão com o servidor.");
+    } finally {
+      setLoading(false); // Libera o botão após o envio
+    }
   };
 
   return (
@@ -78,9 +100,10 @@ export default function ScheduleForm() {
 
         <button
           type="submit"
-          className="w-full bg-blue-600 text-white py-2 px-4 rounded hover:bg-blue-700 transition-colors"
+          className="w-full bg-blue-600 text-white py-2 px-4 rounded hover:bg-blue-700 transition-colors disabled:opacity-50"
+          disabled={loading}
         >
-          Enviar Agendamento
+          {loading ? "Enviando..." : "Enviar Agendamento"}
         </button>
       </div>
     </form>

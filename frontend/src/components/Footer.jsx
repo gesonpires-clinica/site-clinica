@@ -6,8 +6,8 @@ export default function Footer() {
             {/* Contato */}
             <div>
               <h3 className="text-xl font-bold mb-4">Contato</h3>
-              <p className="mb-2">Email: contato@clinicamarianebach.com</p>
-              <p>Telefone: (11) 99999-9999</p>
+              <p className="mb-2">clinicaneuromarianebach@gmail.com</p>
+              <p>(48) 99122-8184</p>
             </div>
   
             {/* Links Rápidos */}
@@ -21,13 +21,28 @@ export default function Footer() {
             </div>
   
             {/* Redes Sociais */}
-            <div>
-              <h3 className="text-xl font-bold mb-4">Redes Sociais</h3>
-              <div className="flex space-x-4">
-                <a href="#" className="hover:text-blue-400">Facebook</a>
-                <a href="#" className="hover:text-blue-400">Instagram</a>
-              </div>
-            </div>
+<div>
+  <h3 className="text-xl font-bold mb-4">Redes Sociais</h3>
+  <div className="flex space-x-4">
+    <a
+      href="https://www.facebook.com/seuPerfil"
+      target="_blank"
+      rel="noopener noreferrer"
+      className="hover:text-blue-400"
+    >
+      Facebook
+    </a>
+    <a
+      href="https://www.instagram.com/bachmariane/"
+      target="_blank"
+      rel="noopener noreferrer"
+      className="hover:text-blue-400"
+    >
+      Instagram
+    </a>
+  </div>
+</div>
+
           </div>
           <div className="mt-8 text-center border-t border-gray-700 pt-4">
             <p>&copy; 2025 Clínica Mariane Bach. Todos os direitos reservados.</p>
