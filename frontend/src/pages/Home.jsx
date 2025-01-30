@@ -126,7 +126,7 @@ export default function Home() {
         <div className="max-w-6xl mx-auto px-4 md:flex items-center gap-12">
           <div className="md:w-1/2 mb-8 md:mb-0">
             <img
-              src="/src/assets/equipe.png"
+              src="/src/assets/equipe.jpg"
               alt="Equipe da clínica"
               className="rounded-lg shadow-xl"
             />
