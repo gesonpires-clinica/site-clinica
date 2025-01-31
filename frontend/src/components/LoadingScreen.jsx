@@ -1,4 +1,5 @@
 import { useState, useEffect } from "react";
+import favicon from "/favicon.ico";
 
 export default function LoadingScreen() {
   const conceitos = [
@@ -30,8 +31,8 @@ export default function LoadingScreen() {
     "🎯 Dica: Dificuldade em lembrar instruções pode estar relacionada à memória de trabalho.",
     "🎯 Dica: Atividades físicas ajudam no controle da hiperatividade e impulsividade do TDAH.",
     "🎯 Dica: Estratégias visuais, como mapas mentais, auxiliam no aprendizado de crianças com dificuldades.",
-    "🎯 Dica: Falar com um especialista pode trazer insights valiosos para dificuldades persistentes na aprendizagem."
-];
+    "🎯 Dica: Falar com um especialista pode trazer insights valiosos para dificuldades persistentes na aprendizagem.",
+  ];
 
   const [conceito, setConceito] = useState("");
 
@@ -43,9 +44,17 @@ export default function LoadingScreen() {
 
   return (
     <div className="flex flex-col justify-center items-center min-h-screen bg-gray-100 text-gray-900 p-6 text-center">
+      {/* Adicionando o favicon como imagem */}
+      <img src={favicon} alt="Logo" className="w-16 h-16 mb-8" />
       <div className="animate-spin w-12 h-12 border-t-4 border-blue-500 rounded-full mb-8"></div>
-      <div className="mb-8"><p className="text-sm text-gray-700 leading-relaxed"><strong>Enquanto a página carrega, vamos refletir:</strong></p></div>
-      <p className="text-xl sm:text-2xl text-center px-6 leading-relaxed">{conceito}</p>
+      <div className="mb-8">
+        <p className="text-sm text-gray-700 leading-relaxed">
+          <strong>Enquanto a página carrega, vamos refletir:</strong>
+        </p>
+      </div>
+      <p className="text-xl sm:text-2xl text-center px-6 leading-relaxed">
+        {conceito}
+      </p>
     </div>
   );
 }
