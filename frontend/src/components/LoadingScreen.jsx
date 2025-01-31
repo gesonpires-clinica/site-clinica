@@ -33,9 +33,9 @@ export default function LoadingScreen() {
 
   return (
     <div className="flex flex-col justify-center items-center min-h-screen bg-gray-100 text-gray-900 p-6 text-center">
-      <div className="animate-spin w-12 h-12 border-t-4 border-blue-500 rounded-full mb-4"></div>
-      <p className="text-sm text-gray-700 leading-relaxed"> <strong>Enquanto a página carrega, vamos refletir:</strong></p>
-      <p className="italic text-gray-600 mt-2">{conceito}</p>
+      <div className="animate-spin w-12 h-12 border-t-4 border-blue-500 rounded-full mb-8"></div>
+      <div className="mb-8"><p className="text-sm text-gray-700 leading-relaxed"><strong>Enquanto a página carrega, vamos refletir:</strong></p></div>
+      <p className="text-xl sm:text-2xl text-center px-6 leading-relaxed">{conceito}</p>
     </div>
   );
 }
