@@ -54,6 +54,31 @@ app.post("/contact", async (req, res) => {
   }
 });
 
+// 📌 Rota para receber agendamentos de consulta
+app.post("/send-email", async (req, res) => {
+  const { name, email, phone, date, message } = req.body;
+
+  try {
+    // 📌 Salvar o agendamento no banco de dados
+    const newAppointment = new Appointment({ name, email, phone, date, message });
+    await newAppointment.save();
+
+    // 📌 Enviar e-mail de confirmação para a clínica
+    await transporter.sendMail({
+      from: `"Agendamento" <${process.env.EMAIL_USER}>`,
+      to: "clinicaneuromarianebach@gmail.com",
+      subject: `Novo Agendamento - ${name}`,
+      text: `Nome: ${name}\nE-mail: ${email}\nTelefone: ${phone}\nData: ${date}\nMensagem:\n${message}`,
+    });
+
+    res.status(200).json({ message: "Agendamento recebido e e-mail enviado!" });
+  } catch (error) {
+    console.error("Erro ao processar o agendamento:", error);
+    res.status(500).json({ message: "Erro ao processar o agendamento", error });
+  }
+});
+
+
 // 📌 Iniciar o servidor
 const PORT = process.env.PORT || 5000;
 app.listen(PORT, () => console.log(`🚀 Servidor rodando na porta ${PORT}`));
