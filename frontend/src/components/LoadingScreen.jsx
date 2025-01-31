@@ -1,27 +1,37 @@
 import { useState, useEffect } from "react";
 
 export default function LoadingScreen() {
-    const conceitos = [
-        "Dislexia: dificuldade na leitura e na escrita, mas sem afetar a inteligência.",
-        "TDAH: Transtorno do Déficit de Atenção e Hiperatividade, que afeta a concentração.",
-        "Discalculia: dificuldade com números e operações matemáticas.",
-        "TEA: Transtorno do Espectro Autista, caracterizado por desafios na comunicação e interação social.",
-        "Disgrafia: dificuldade na escrita, tornando a caligrafia ilegível ou desorganizada.",
-        "Transtorno do Processamento Auditivo Central (TPAC): dificuldade em interpretar sons corretamente, mesmo com audição normal.",
-        "Apraxia da fala: dificuldade em coordenar os movimentos necessários para falar corretamente.",
-        "Disortografia: dificuldade em aplicar regras ortográficas, levando a erros frequentes na escrita.",
-        "Síndrome de Asperger: um dos transtornos do espectro autista, caracterizado por dificuldades na interação social e interesses específicos.",
-        "Transtorno do Desenvolvimento da Linguagem (TDL): dificuldade no desenvolvimento normal da linguagem, afetando a comunicação verbal e compreensão.",
-        "Transtorno Opositivo-Desafiador (TOD): comportamento desafiador e desobediente persistente em crianças e adolescentes.",
-        "Altas habilidades/Superdotação: indivíduos com grande potencial intelectual, criativo ou artístico, muitas vezes acompanhados por dificuldades emocionais ou sociais.",
-        "Funções Executivas: habilidades mentais responsáveis pelo planejamento, organização e controle de impulsos.",
-        "Dificuldade de Leitura e Escrita: pode estar relacionada a diversos transtornos, mas sempre pode ser trabalhada com acompanhamento adequado.",
-        "Memória de Trabalho: capacidade do cérebro de armazenar e manipular informações temporariamente para resolver problemas e tomar decisões.",
-        "Síndrome de Burnout Acadêmico: exaustão mental e emocional devido à pressão intensa nos estudos, afetando o desempenho e a motivação.",
-        "Transtorno de Ansiedade Social: medo intenso de interações sociais, prejudicando a comunicação e o aprendizado em ambientes educacionais.",
-        "Transtorno do Sono e Aprendizagem: distúrbios do sono podem impactar diretamente a atenção, memória e desempenho acadêmico.",
-        "Neuroplasticidade: capacidade do cérebro de se adaptar e criar novas conexões neurais ao longo da vida, fundamental para a aprendizagem."
-    ];    
+  const conceitos = [
+    "🔵 Dislexia: dificuldade na leitura e na escrita, mas sem afetar a inteligência.",
+    "🟡 TDAH: dificuldade de concentração, impulsividade e inquietação excessiva.",
+    "🔢 Discalculia: dificuldade em entender números e operações matemáticas.",
+    "🧩 TEA: desafios na comunicação e interação social, podendo envolver padrões repetitivos.",
+    "✍️ Disgrafia: dificuldade motora na escrita, resultando em caligrafia desorganizada.",
+    "🎧 TPAC: dificuldade em processar sons e interpretar a fala, mesmo com audição normal.",
+    "🗣️ Apraxia da Fala: dificuldade em coordenar os movimentos necessários para falar.",
+    "📖 Disortografia: dificuldade em aplicar regras ortográficas corretamente.",
+    "🤝 Síndrome de Asperger: dificuldades sociais e interesses específicos, sem comprometimento intelectual.",
+    "🗨️ TDL: dificuldades na aquisição da linguagem, afetando a comunicação e compreensão.",
+    "🚸 TOD: comportamento desafiador e opositor persistente, além de dificuldades em seguir regras.",
+    "💡 Superdotação: habilidades excepcionais, mas pode haver dificuldades emocionais ou sociais.",
+    "🧠 Funções Executivas: planejamento, organização e controle de impulsos podem estar prejudicados.",
+    "📚 Dificuldade de Leitura: pode ser trabalhada com estímulo adequado e estratégias personalizadas.",
+    "🔄 Memória de Trabalho: fundamental para resolver problemas e tomar decisões rapidamente.",
+    "⚠️ Burnout Acadêmico: exaustão emocional devido à sobrecarga nos estudos, impactando a motivação.",
+    "😟 Ansiedade Social: medo intenso de interações, impactando a aprendizagem e autoestima.",
+    "🌙 Sono e Aprendizagem: distúrbios do sono podem afetar memória, atenção e desempenho escolar.",
+    "🔬 Neuroplasticidade: o cérebro pode se adaptar e aprender ao longo da vida, criando novas conexões.",
+    "🎯 Dica: Dificuldade extrema com mudanças pode ser um sinal de TEA.",
+    "🎯 Dica: Crianças que se distraem facilmente podem se beneficiar de rotinas estruturadas.",
+    "🎯 Dica: Erros frequentes na escrita podem ser um sinal de dislexia ou disortografia.",
+    "🎯 Dica: Para dificuldades com matemática, jogos lúdicos podem ajudar no aprendizado.",
+    "🎯 Dica: Estimular a leitura com histórias envolventes pode ajudar crianças com dislexia.",
+    "🎯 Dica: Se uma criança evita contato visual, observe outros sinais de dificuldades sociais.",
+    "🎯 Dica: Dificuldade em lembrar instruções pode estar relacionada à memória de trabalho.",
+    "🎯 Dica: Atividades físicas ajudam no controle da hiperatividade e impulsividade do TDAH.",
+    "🎯 Dica: Estratégias visuais, como mapas mentais, auxiliam no aprendizado de crianças com dificuldades.",
+    "🎯 Dica: Falar com um especialista pode trazer insights valiosos para dificuldades persistentes na aprendizagem."
+];
 
   const [conceito, setConceito] = useState("");
 
