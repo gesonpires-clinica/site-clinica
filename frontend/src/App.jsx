@@ -17,7 +17,7 @@ export default function App() {
 
   useEffect(() => {
     // Simula um tempo de carregamento (2 segundos)
-    const timer = setTimeout(() => setLoading(false), 2000);
+    const timer = setTimeout(() => setLoading(false), 10000);
     return () => clearTimeout(timer);
   }, []);
 
