@@ -54,20 +54,24 @@ export default function Services() {
   ];
 
   return (
-    <div className="min-h-screen bg-gray-50 py-12 pt-20">
-      <div className="max-w-6xl mx-auto px-4">
-        <h1 className="text-4xl font-bold text-center mb-8">Nossos Serviços</h1>
+    <div className="min-h-screen bg-gray-50 py-8 pt-24 px-4">
+      <div className="max-w-6xl mx-auto">
+        <h1 className="text-3xl md:text-4xl font-bold text-center mb-8">
+          Nossos Serviços
+        </h1>
         
-        <div className="space-y-12">
+        <div className="space-y-8">
           {services.map((service, index) => (
             <div 
               key={index}
-              className="bg-white p-8 rounded-xl shadow-lg border border-gray-100"
+              className="bg-white p-6 md:p-8 rounded-xl shadow-lg border border-gray-100 max-w-md mx-auto md:max-w-none"
             >
-              <h3 className="text-2xl font-bold mb-4 text-blue-800">{service.title}</h3>
+              <h3 className="text-xl md:text-2xl font-bold mb-4 text-blue-800 text-center md:text-left">
+                {service.title}
+              </h3>
               
               <div className="space-y-4">
-                <div className="prose prose-lg text-gray-700">
+                <div className="prose text-gray-700 text-sm md:text-base">
                   <pre className="whitespace-pre-wrap font-sans">{service.description}</pre>
                 </div>
                 
@@ -80,9 +84,11 @@ export default function Services() {
           ))}
 
           {/* Seção de Transtornos Atendidos */}
-          <div className="bg-blue-800 text-white p-8 rounded-xl">
-            <h2 className="text-2xl font-bold mb-6">Transtornos e Dificuldades Atendidos</h2>
-            <div className="grid md:grid-cols-3 gap-4">
+          <div className="bg-blue-800 text-white p-6 md:p-8 rounded-xl max-w-md mx-auto md:max-w-none">
+            <h2 className="text-xl md:text-2xl font-bold mb-6 text-center md:text-left">
+              Transtornos e Dificuldades Atendidos
+            </h2>
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-4 text-center md:text-left">
               <ul className="space-y-2">
                 <li>▸ TDAH</li>
                 <li>▸ Dislexia</li>
