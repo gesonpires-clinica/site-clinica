@@ -11,6 +11,8 @@ export default function Contact() {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState("");
 
+  const API_URL = import.meta.env.VITE_API_URL; // Obtém a URL do backend do .env
+
   const handleSubmit = async (e) => {
     e.preventDefault();
     setError(""); // Limpa erros anteriores
@@ -30,7 +32,12 @@ export default function Contact() {
     setLoading(true);
 
     try {
-      const response = await fetch("http://localhost:5000/contact", {
+      // 📌 Pingamos o backend para evitar erros por suspensão do Render
+      await fetch(`${API_URL}`).catch(() => {
+        throw new Error("Backend está fora do ar!");
+      });
+
+      const response = await fetch(`${API_URL}/contact`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(formData),
@@ -88,7 +95,9 @@ export default function Contact() {
               <input
                 type="email"
                 value={formData.email}
-                onChange={(e) => setFormData({ ...formData, email: e.target.value })}
+                onChange={(e) =>
+                  setFormData({ ...formData, email: e.target.value })
+                }
                 className="w-full p-2 border rounded focus:ring-2 focus:ring-blue-500"
                 required
               />
@@ -99,7 +108,9 @@ export default function Contact() {
               <textarea
                 rows="4"
                 value={formData.message}
-                onChange={(e) => setFormData({ ...formData, message: e.target.value })}
+                onChange={(e) =>
+                  setFormData({ ...formData, message: e.target.value })
+                }
                 className="w-full p-2 border rounded focus:ring-2 focus:ring-blue-500"
                 required
               ></textarea>

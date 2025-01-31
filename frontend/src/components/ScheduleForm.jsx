@@ -37,6 +37,11 @@ export default function ScheduleForm() {
     setLoading(true); // Indica que o envio está em andamento
 
     try {
+      // 📌 Primeiro, fazemos um ping no backend para garantir que ele esteja ativo
+      await fetch(`${API_URL}`).catch(() => {
+        throw new Error("Backend está fora do ar!");
+      });
+
       // 📌 Ajustar formato da data para YYYY-MM-DD (para compatibilidade com o MongoDB)
       const formattedDate = new Date(formData.date).toISOString().split("T")[0];
 

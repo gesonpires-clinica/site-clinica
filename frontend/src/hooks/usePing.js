@@ -1,6 +1,6 @@
 import { useEffect } from "react";
 
-const usePing = (backendUrl, interval = 600000) => { // Pinga a cada 10 min (600000 ms)
+const usePing = (backendUrl, interval = 300000) => { // Pinga a cada 5 minutos (300000 ms)
   useEffect(() => {
     const pingServer = () => {
       fetch(backendUrl)
