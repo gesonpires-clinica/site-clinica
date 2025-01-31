@@ -155,23 +155,27 @@ export default function Home() {
       </section>
 
       {/* Chamada para Ação */}
-      <section className="py-16 bg-blue-900 text-white">
+      <section className="py-12 md:py-16 bg-blue-900 text-white">
         <div className="max-w-4xl mx-auto px-4 text-center">
-          <h2 className="text-3xl font-bold mb-6">
+          <h2 className="text-2xl md:text-3xl font-bold mb-4 md:mb-6">
             Sinais que Merecem Atenção
           </h2>
-          <div className="grid md:grid-cols-2 gap-8 mb-12">
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 md:gap-8 mb-8 md:mb-12">
             <div className="text-left p-4 bg-white/10 rounded-lg">
-              <h3 className="text-xl font-bold mb-3">Em Crianças</h3>
-              <ul className="space-y-2">
+              <h3 className="text-lg md:text-xl font-bold mb-2 md:mb-3">
+                Em Crianças
+              </h3>
+              <ul className="space-y-1 md:space-y-2 text-sm md:text-base">
                 <li>• Dificuldade de concentração</li>
                 <li>• Atraso na leitura/escrita</li>
                 <li>• Baixa autoestima escolar</li>
               </ul>
             </div>
             <div className="text-left p-4 bg-white/10 rounded-lg">
-              <h3 className="text-xl font-bold mb-3">Em Adolescentes</h3>
-              <ul className="space-y-2">
+              <h3 className="text-lg md:text-xl font-bold mb-2 md:mb-3">
+                Em Adolescentes
+              </h3>
+              <ul className="space-y-1 md:space-y-2 text-sm md:text-base">
                 <li>• Procrastinação crônica</li>
                 <li>• Dificuldade de organização</li>
                 <li>• Ansiedade pré-provas</li>
@@ -180,7 +184,7 @@ export default function Home() {
           </div>
           <Link
             to="/services"
-            className="bg-white text-blue-900 px-8 py-3 rounded-lg hover:bg-gray-100 transition-all inline-block"
+            className="bg-white text-blue-900 px-6 py-3 md:px-8 md:py-3 rounded-lg hover:bg-gray-100 transition-all inline-block"
           >
             Saiba como podemos ajudar
           </Link>
@@ -188,25 +192,29 @@ export default function Home() {
       </section>
 
       {/* Blog/Artigos */}
-      <section className="py-16">
+      <section className="py-12 md:py-16">
         <div className="max-w-6xl mx-auto px-4">
-          <h2 className="text-3xl font-bold text-center mb-12">
+          <h2 className="text-2xl md:text-3xl font-bold text-center mb-6 md:mb-12">
             Artigos Recentes
           </h2>
-          <div className="grid md:grid-cols-3 gap-8">
+          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6 md:gap-8">
             {articles.map((post, index) => (
               <div
                 key={index}
-                className="bg-white p-6 rounded-lg shadow-md hover:shadow-lg transition-shadow"
+                className="bg-white p-4 md:p-6 rounded-lg shadow-md hover:shadow-lg transition-shadow"
               >
-                <span className="text-blue-600 text-sm font-semibold">
+                <span className="text-blue-600 text-xs md:text-sm font-semibold">
                   {post.category}
                 </span>
-                <h3 className="text-xl font-bold mt-2 mb-3">{post.title}</h3>
+                <h3 className="text-lg md:text-xl font-bold mt-2 mb-2 md:mb-3">
+                  {post.title}
+                </h3>
 
                 {/* Exibe o conteúdo do artigo se estiver aberto */}
                 {openArticle === index && (
-                  <p className="text-gray-700 mt-2">{post.content}</p>
+                  <p className="text-gray-700 text-sm md:text-base mt-2">
+                    {post.content}
+                  </p>
                 )}
 
                 <button
